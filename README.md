@@ -1,9 +1,4 @@
-# Minimal
-A minimal template to quick start a Dokuwiki
+# Mildly less minimal
+Isekai ahh name
 
-More at [https://www.dokuwiki.org/template:minimal](https://www.dokuwiki.org/template:minimal)
-
-**Under development:**
-- [ ] Tagline support
-- [x] Sticky TOC conf
-- [x] Themes functionality
+A fork of the Minimal Dokuwiki template to be used on [the WipEout wiki](https://wiki.agracingfoundation.org/)
