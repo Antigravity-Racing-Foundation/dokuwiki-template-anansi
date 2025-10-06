@@ -20,10 +20,31 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
   lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>" class="no-js">
 <head>
     <meta charset="UTF-8" />
-    <title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
+    <?php
+    ob_start();
+    tpl_pagetitle();
+    $title = ob_get_clean();
+    $page_title = ucwords(strtolower($title), " : _");
+    // jank to get somewhat decent capitalization...
+    ?>
+    <title><?= $page_title ?> - <?php echo strip_tags($conf['title']) ?></title>
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     <?php tpl_metaheaders() ?>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <meta name="description" content="A page of the WipEout wiki covering the '<?= $page_title ?>' topic"/>
+    <meta name="keywords" content="WipEout, HD, 2048, Pulse, AGRF, AG Racing Foundation, wiki, teams, games, tracks, ships, lore">
+    <meta name="author" content="WipEout wiki contributors"/>
+    <meta name="robots" content="index"/>
+
+    <meta property="og:title" content="WipEout Wiki"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="WipEout Wiki - <?= $page_title ?>"/>
+    <meta property="og:url" content="<?= wl($ID, '', true) ?>"/>
+    <meta property="og:image" content="https://wipeout.wiki/_media/wiki:og_image.png"/>
+    <meta property="og:image:alt" content="A pretty graphic in the style of the website"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
 </head>
