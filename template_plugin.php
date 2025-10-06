@@ -10,11 +10,8 @@
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 
-// must be run from within DokuWiki
-if (!defined('DOKU_INC')) die();
-
 function tpl_minimal_classes()
-{	
+{
 	global $conf, $ACT;
 	$theme = '';
 	if(tpl_getConf('theme')!='Default')
@@ -27,5 +24,3 @@ function tpl_minimal_classes()
 	$sidebar = (page_findnearest($conf['sidebar']) && ($ACT=='show')) ? ' sidebar' : '';
 	return tpl_classes().$toc.$width.$sidebar.$theme;
 }
-
-

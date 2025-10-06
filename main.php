@@ -28,13 +28,13 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
     <?php tpl_includeFile('meta.html') ?>
 </head>
 
-<?php 
+<?php
 
 ?>
-<body class="<?=tpl_minimal_classes()?>">
+<body class="<?=tpl_minimal_classes()?>" style="background: radial-gradient(circle farthest-side at 10% 50%, #64646433, #ffffff00); background-repeat: no-repeat;">
 <div id="dokuwiki__top"></div>
 <navbar id="navbar" class="container" role="navigation" aria-label="Main navigation">
-        <?php 
+        <?php
         if(!$showSidebar){$s1 = "style=visibility:hidden";}
         else {$s1="";}
         ?>
@@ -67,7 +67,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
             <div class="site-menu menu">
                 <div class="button"><span><?=tpl_getLang('site')?></span></div>
                   <div class="list">
-                  <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>    
+                  <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>
                 </div>
             </div>
             <?php endif?>
@@ -79,11 +79,11 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                 <div class="user-name"><?=$USERINFO['name']?></div>
                 <?php endif?>
                 <?=(new \dokuwiki\Menu\UserMenu())->getListItems()?>
-            </div>  
+            </div>
             </div>
             <?php endif?>
             <div class="mobile-menu menu">
-            <?php 
+            <?php
 
             if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
                 {
@@ -91,7 +91,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                     (new \dokuwiki\Menu\PageMenu())->getListItems()
                     .'</div>';
                 }
-  
+
                if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
                {
                     echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
@@ -109,7 +109,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                if($USERINFO){
                  echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
                }
-                
+
             ?>
             </div>
         </div>
@@ -120,7 +120,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
         </div>
         <?php endif?>
         </div>
-        <?php 
+        <?php
         if(!$showTools){$s2 = "style=visibility:hidden";}
         else {$s2="";}
         ?>
@@ -129,12 +129,12 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
         </div>
      <?php endif?>
     </navbar>
-    
+
     <?php if(($conf['youarehere'] || $conf['breadcrumbs'] || (page_exists("header") && auth_quickaclcheck("header")) ) && tpl_getConf('siteHeaderPosition')=='Top'):?>
     <div class="site-header">
     <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
     <!-- ********** Notice ********** -->
-    <?php 
+    <?php
         if(page_exists("header") && auth_quickaclcheck("header"))
         {
             echo '<div class="site-header-content">';
@@ -144,7 +144,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
     ?>
 
     <?php if($conf['youarehere'] || $conf['breadcrumbs']):?>
-    
+
     <div class="site-navigation">
         <!-- BREADCRUMBS -->
         <?php if($conf['youarehere']){ ?>
@@ -159,7 +159,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
     <?php endif?>
 
 <main id="main">
-        
+
         <?php if ($showSidebar): ?>
             <div id="sidebar" class="left-column" aria-label="<?php echo $lang['sidebar'] ?>">
                 <div class="sidebar-content">
@@ -175,7 +175,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                 <div class="site-header">
                 <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
                 <!-- ********** Notice ********** -->
-                <?php 
+                <?php
                     if(page_exists("header") && auth_quickaclcheck("header"))
                     {
                         echo '<div class="site-header-content">';
@@ -185,7 +185,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                 ?>
 
                 <?php if($conf['youarehere'] || $conf['breadcrumbs']):?>
-                
+
                 <div class="site-navigation">
                     <!-- BREADCRUMBS -->
                     <?php if($conf['youarehere']){ ?>
@@ -200,7 +200,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                 <?php endif?>
 
         <article id="content">
-            <?php tpl_flush(); ?> 
+            <?php tpl_flush(); ?>
             <?php tpl_content();?>
             <?php tpl_flush(); ?>
         </article>
@@ -209,12 +209,12 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
         <?php if(tpl_getConf('showPageInfo') ):?>
          <div class="page-info">
                 <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-                    
+
         </div>
         <?php endif; ?>
 
-                 
-        <?php 
+
+        <?php
         if((page_exists("footer") && auth_quickaclcheck("footer")) && tpl_getConf('siteFooterPosition')=='Below page')
         {
             echo '<footer id="footer">';
@@ -226,7 +226,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
         <div style="display: none;"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
     </div>
     </main>
-        <?php 
+        <?php
     if((page_exists("footer") && auth_quickaclcheck("footer")) && tpl_getConf('siteFooterPosition')=='Bottom')
     {
         echo '<footer id="footer">';

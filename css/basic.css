@@ -6,7 +6,7 @@
  * the other project's basic CSS for DokuWiki instead of this one.
  *
  * @author Reactive Matter <reactivematter@protonmail.com>
- * 
+ *
  */
 
 html {
@@ -14,7 +14,7 @@ html {
     overflow-y: scroll;
 }
 
-body 
+body
 {
     --background: __background__;
     --background-alt: __background_alt__;
@@ -29,16 +29,17 @@ body
 }
 
 body {
-    background-color: var(--background);
+    background: var(--background);
     color: var(--text-color);
     margin: 0;
+    margin-right: 1.25rem;
+    margin-left: 1.25rem;
     padding: 0;
     min-height: 100vh;
     font-family: sans-serif;
     font-size: 16px;
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 body:not(.full-width)
@@ -47,7 +48,7 @@ body:not(.full-width)
     margin: auto;
 }
 
-body * 
+body *
 {
     box-sizing: border-box;
 }
@@ -55,7 +56,7 @@ body *
 
 
 
-.hide 
+.hide
 {
     display: none;
 }
@@ -659,7 +660,7 @@ option {
 
 /* CSS starts */
 
-.hide 
+.hide
 {
     display: none;
 }
@@ -688,11 +689,13 @@ option {
 
 
 
-navbar 
+navbar
 {
     display: flex;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 4px solid #646464;
     line-height: 1;
+    background-color: #fcfcfc;
+    margin-top: 1rem;
 }
 
 navbar .site-name
@@ -715,7 +718,7 @@ navbar .site-name .site-title
     padding: 8px 0px;
 }
 
-navbar a.site-name, navbar a.site-name:hover 
+navbar a.site-name, navbar a.site-name:hover
 {
     color: __title_color__;
     text-decoration: none;
@@ -747,9 +750,9 @@ navbar form.search input
     border: 1px solid var(--border-color);
     border-radius: 3px;
     box-sizing: border-box;
-    background-color: var(--background);
+    background-color: transparent;
 }
-navbar form.search input:focus 
+navbar form.search input:focus
 {
     box-shadow: none;
 }
@@ -766,7 +769,7 @@ navbar form.search input:focus
     align-items: center;
 }
 
-#qsearch__out 
+#qsearch__out
 {
     display: none;
     padding: 0.5em 1em;
@@ -796,7 +799,7 @@ navbar .right-column .options
     flex-direction: row;
 }
 
-#main 
+#main
 {
     display: flex;
     flex-grow: 1;
@@ -817,13 +820,13 @@ div#view>*
     padding-right: 0px;
 }
 
-div#view, div#sidebar 
+div#view, div#sidebar
 {
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
-.site-header 
+.site-header
 {
     border-bottom: 1px solid var(--border-color);
 }
@@ -870,13 +873,23 @@ div#view, div#sidebar
     margin-bottom: 0px;
 }
 
-footer 
-{
-    padding: 16px;
-    border-top: 1px solid var(--border-color);
+footer {
+    --link-color: #88a9df;
 }
 
-#view>footer 
+footer
+{
+    background: #fcfcfc;
+    padding: 10px;
+    border-top: 4px solid #646464;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: #bbbbbb;
+    font-weight: bold;
+    text-align: center;
+}
+
+#view>footer
 {
     padding-bottom: 0px;
 }
@@ -884,7 +897,7 @@ footer
 
 article#content
 {
-    flex-grow: 1;    
+    flex-grow: 1;
 }
 
 article#content h1
@@ -911,14 +924,14 @@ h1, h2, h3, h4, h5, h6
     color: var(--text-color);
 }
 
-.menu 
+.menu
 {
     position: relative;
     cursor: pointer;
 }
 
 
-.menu .list 
+.menu .list
 {
     display: none;
     position: absolute;
@@ -931,7 +944,7 @@ h1, h2, h3, h4, h5, h6
     z-index: 20000;
     border-radius: 3px;
 }
-.menu .list li 
+.menu .list li
 {
     list-style: none;
     margin: 0px;
@@ -953,17 +966,17 @@ h1, h2, h3, h4, h5, h6
 {
     background-color: __background_alt__;
 }
-.menu .list li>a svg 
+.menu .list li>a svg
 {
     fill: __text_alt__;
 }
 
-.menu .list li.top 
+.menu .list li.top
 {
     display: none;
 }
 
-.menu .list .user-name 
+.menu .list .user-name
 {
     padding: 8px 16px;
     text-align: center;
@@ -978,7 +991,7 @@ h1, h2, h3, h4, h5, h6
     color: __text_alt__;
 }
 
-.menu .button:hover 
+.menu .button:hover
 {
     color: var(--text-color);
 }
@@ -1019,7 +1032,7 @@ h1, h2, h3, h4, h5, h6
     background: __text_alt__;
 }
 
-.menu .button:hover::before 
+.menu .button:hover::before
 {
     opacity: 1;
 }
@@ -1038,7 +1051,7 @@ navbar .options
     gap: 0px;
 }
 
-navbar .options .menu 
+navbar .options .menu
 {
     padding: 8px;
 }
@@ -1069,7 +1082,7 @@ ul.actions, .dokuwiki .editBar .editButtons
     gap: 15px;
 }
 
-div#sidebar 
+div#sidebar
 {
     width: var(--sidebar-width);
     border-right: 1px solid var(--border-color);
@@ -1183,7 +1196,7 @@ article#content #dw__toc .toggle
 
 }
 
-pre.code 
+pre.code
 {
     padding: 0.5em 1em;
 }
