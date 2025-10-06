@@ -747,14 +747,13 @@ navbar form.search input
     padding: 0.5em 1em;
     padding-right: 2em;
     width: 20rem;
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
+    border: 1px solid #8ac0ca;
     box-sizing: border-box;
     background-color: transparent;
 }
 navbar form.search input:focus
 {
-    box-shadow: none;
+    box-shadow: 0px 0px 5px #8ac0ca;
 }
 
 #navbar .left-column
@@ -874,7 +873,7 @@ div#view, div#sidebar
 }
 
 footer {
-    --link-color: #88a9df;
+    --link-color: #a6c1eb;
 }
 
 footer
@@ -1085,7 +1084,9 @@ ul.actions, .dokuwiki .editBar .editButtons
 div#sidebar
 {
     width: var(--sidebar-width);
-    border-right: 1px solid var(--border-color);
+    border-right: 4px solid var(--border-color);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     flex-shrink:0;
     flex-grow: 0;
 }
