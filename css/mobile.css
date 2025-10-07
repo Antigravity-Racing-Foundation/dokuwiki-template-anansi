@@ -141,6 +141,11 @@
         padding: 0rem;
      }
 
+     .mobile-menu.menu .list:hover
+     {
+         box-shadow: none;
+     }
+
      .dokuwiki .wrap_box.wrap_side.wrap_big, .dokuwiki .wrap_box.wrap_side
      {
         width: 100%;
