@@ -13,6 +13,12 @@ if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 
 $showTools = !tpl_getConf('hideTools') || ( tpl_getConf('hideTools') && !empty($_SERVER['REMOTE_USER']) );
 $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
+
+ob_start();
+tpl_pagetitle();
+$title = ob_get_clean();
+$page_title = ucwords(strtolower($title), " : _");
+// jank to get somewhat decent capitalization...
 ?>
 
 <!DOCTYPE html>
@@ -20,17 +26,12 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
   lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>" class="no-js">
 <head>
     <meta charset="UTF-8" />
-    <?php
-    ob_start();
-    tpl_pagetitle();
-    $title = ob_get_clean();
-    $page_title = ucwords(strtolower($title), " : _");
-    // jank to get somewhat decent capitalization...
-    ?>
+
     <title><?= $page_title ?> - <?php echo strip_tags($conf['title']) ?></title>
+
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+
     <?php tpl_metaheaders() ?>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
     <meta name="description" content="A page of the WipEout wiki covering the '<?= $page_title ?>' topic"/>
     <meta name="keywords" content="WipEout, HD, 2048, Pulse, AGRF, AG Racing Foundation, wiki, teams, games, tracks, ships, lore">
@@ -45,6 +46,8 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
     <meta property="og:image:alt" content="A pretty graphic in the style of the website"/>
     <meta name="twitter:card" content="summary_large_image"/>
 
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
 </head>
@@ -53,153 +56,172 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
 
 ?>
 <body class="<?=tpl_minimal_classes()?>" style="background: radial-gradient(circle farthest-side at 10% 50%, #64646433, #ffffff00); background-repeat: no-repeat;">
-<div id="dokuwiki__top"></div>
-<navbar id="navbar" class="container" role="navigation" aria-label="Main navigation">
+
+    <div id="dokuwiki__top"></div>
+
+    <navbar id="navbar" class="container" role="navigation" aria-label="Main navigation">
+
         <?php
         if(!$showSidebar){$s1 = "style=visibility:hidden";}
         else {$s1="";}
         ?>
+
         <div id='showhidesidemenu' class="mobile icon" <?=$s1?>>
             <div class="button"></div>
         </div>
+
         <div class="left-column">
-        <a class="site-name" href="<?=DOKU_BASE?>">
-        <div class="site-logo">
-            <img src="<?=tpl_getMediaFile(array(':wiki:logo.png', ':wiki:logo.svg', ':wiki:logo.jpeg',':wiki:logo.jpg',  ':logo.png', ':logo.svg', ':logo.jpeg',':logo.jpg', 'images/logo.png', ':wiki:dokuwiki.svg'), false)?>">
+            <a class="site-name" href="<?=DOKU_BASE?>">
+
+                <div class="site-logo">
+                    <img src="<?=tpl_getMediaFile(array(':wiki:logo.png', ':wiki:logo.svg', ':wiki:logo.jpeg',':wiki:logo.jpg',  ':logo.png', ':logo.svg', ':logo.jpeg',':logo.jpg', 'images/logo.png', ':wiki:dokuwiki.svg'), false)?>">
+                </div>
+
+                <div class="site-title">
+                    <?=$conf['title']?>
+                </div>
+
+                <!-- <img src="<?php echo DOKU_TPL; ?>images/case.svg" alt="Logo" class="decoration"> -->
+
+            </a>
         </div>
-        <div class="site-title">
-            <?=$conf['title']?>
-        </div>
-        </a>
-        </div>
+
         <?php if($showTools || actionOK('search')):?>
-        <div class="right-column">
-        <?php if($showTools):?>
-        <div class="options">
-            <?php if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0):?>
-            <div class="page-menu menu">
-                <div class="button">
-                    <!-- <span><?=tpl_getLang('page')?></span> -->
-                </div>
-                  <div class="list">
-                <?=(new \dokuwiki\Menu\PageMenu())->getListItems()?>
-                </div>
-            </div>
-            <?php endif?>
-            <?php if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0):?>
-            <div class="site-menu menu">
-                <div class="button">
-                    <!-- <span><?=tpl_getLang('site')?></span> -->
-                </div>
-                  <div class="list">
-                  <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>
-                </div>
-            </div>
-            <?php endif?>
-            <?php if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0):?>
-            <div class="user-menu menu">
-            <div class="button">
-                <!-- <span><?=tpl_getLang('user')?></span> -->
-            </div>
-            <div class="list">
-                <?php if($USERINFO):?>
-                <div class="user-name"><?=$USERINFO['name']?></div>
+            <div class="right-column">
+
+                <?php if($showTools):?>
+                    <div class="options">
+
+                        <?php if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0):?>
+                            <div class="page-menu menu">
+                                <div class="button">
+                                    <!-- <span><?=tpl_getLang('page')?></span> -->
+                                </div>
+                                <div class="list">
+                                    <?=(new \dokuwiki\Menu\PageMenu())->getListItems()?>
+                                </div>
+                            </div>
+                        <?php endif?>
+
+                        <?php if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0):?>
+                            <div class="site-menu menu">
+                                <div class="button">
+                                    <!-- <span><?=tpl_getLang('site')?></span> -->
+                                </div>
+                                  <div class="list">
+                                  <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>
+                                </div>
+                            </div>
+                        <?php endif?>
+
+                        <?php if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0):?>
+                            <div class="user-menu menu">
+                                <div class="button">
+                                    <!-- <span><?=tpl_getLang('user')?></span> -->
+                                </div>
+                                <div class="list">
+                                    <?php if($USERINFO):?>
+                                        <div class="user-name"><?=$USERINFO['name']?></div>
+                                    <?php endif?>
+                                    <?=(new \dokuwiki\Menu\UserMenu())->getListItems()?>
+                                </div>
+                            </div>
+                        <?php endif?>
+
+                        <div class="mobile-menu menu">
+                            <?php
+
+                            if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
+                                {
+                                    echo '<div class="list"><p>'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
+                                    (new \dokuwiki\Menu\PageMenu())->getListItems()
+                                    .'</div>';
+                                }
+
+                               if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
+                               {
+                                    echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
+                                    (new \dokuwiki\Menu\SiteMenu())->getListItems()
+                                    .'</div>';
+                               }
+
+                               if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0)
+                               {
+                                   echo '<div class="list"><p>'.tpl_getLang('user').' '.tpl_getLang('tools').'</p>'.
+                                   (new \dokuwiki\Menu\UserMenu())->getListItems()
+                                   .'</div>';
+                               }
+
+                               if($USERINFO){
+                                 echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
+                               }
+
+                            ?>
+                        </div>
+                    </div>
                 <?php endif?>
-                <?=(new \dokuwiki\Menu\UserMenu())->getListItems()?>
+
+                <?php if(actionOK('search')):?>
+                <div class="search">
+                    <?php tpl_searchform(true,false) ?>
+                </div>
+                <?php endif?>
             </div>
-            </div>
-            <?php endif?>
-            <div class="mobile-menu menu">
+
             <?php
-
-            if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
-                {
-                    echo '<div class="list"><p>'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
-                    (new \dokuwiki\Menu\PageMenu())->getListItems()
-                    .'</div>';
-                }
-
-               if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
-               {
-                    echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
-                    (new \dokuwiki\Menu\SiteMenu())->getListItems()
-                    .'</div>';
-               }
-
-               if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0)
-               {
-                   echo '<div class="list"><p>'.tpl_getLang('user').' '.tpl_getLang('tools').'</p>'.
-                   (new \dokuwiki\Menu\UserMenu())->getListItems()
-                   .'</div>';
-               }
-
-               if($USERINFO){
-                 echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
-               }
-
+                if(!$showTools){$s2 = "style=visibility:hidden";}
+                else {$s2="";}
             ?>
+            <div id='showhideappoptions' class="mobile icon" <?=$s2?>>
+                <div class="button"></div>
             </div>
-        </div>
         <?php endif?>
-        <?php if(actionOK('search')):?>
-        <div class="search">
-            <?php tpl_searchform(true,false) ?>
-        </div>
-        <?php endif?>
-        </div>
-        <?php
-        if(!$showTools){$s2 = "style=visibility:hidden";}
-        else {$s2="";}
-        ?>
-        <div id='showhideappoptions' class="mobile icon" <?=$s2?>>
-            <div class="button"></div>
-        </div>
-     <?php endif?>
     </navbar>
 
     <?php if(($conf['youarehere'] || $conf['breadcrumbs'] || (page_exists("header") && auth_quickaclcheck("header")) ) && tpl_getConf('siteHeaderPosition')=='Top'):?>
-    <div class="site-header">
-    <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
-    <!-- ********** Notice ********** -->
-    <?php
-        if(page_exists("header") && auth_quickaclcheck("header"))
-        {
-            echo '<div class="site-header-content">';
-            tpl_include_page('header');
-            echo '</div>';
-        }
-    ?>
+        <div class="site-header">
 
-    <?php if($conf['youarehere'] || $conf['breadcrumbs']):?>
+            <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
+            <!-- ********** Notice ********** -->
+            <?php
+                if(page_exists("header") && auth_quickaclcheck("header"))
+                {
+                    echo '<div class="site-header-content">';
+                    tpl_include_page('header');
+                    echo '</div>';
+                }
+            ?>
 
-    <div class="site-navigation">
-        <!-- BREADCRUMBS -->
-        <?php if($conf['youarehere']){ ?>
-            <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
-        <?php } ?>
-        <?php if($conf['breadcrumbs']){ ?>
-            <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
-        <?php } ?>
-    </div>
-    <?php endif?>
-    </div>
+            <?php if($conf['youarehere'] || $conf['breadcrumbs']):?>
+                <div class="site-navigation">
+                    <!-- BREADCRUMBS -->
+                    <?php if($conf['youarehere']){ ?>
+                        <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
+                    <?php } ?>
+                    <?php if($conf['breadcrumbs']){ ?>
+                        <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
+                    <?php } ?>
+                </div>
+            <?php endif?>
+
+        </div>
     <?php endif?>
 
 <main id="main">
 
-        <?php if ($showSidebar): ?>
-            <div id="sidebar" class="left-column" aria-label="<?php echo $lang['sidebar'] ?>">
-                <div class="sidebar-content">
+    <?php if ($showSidebar): ?>
+        <div id="sidebar" class="left-column" aria-label="<?php echo $lang['sidebar'] ?>">
+            <div class="sidebar-content">
                 <?php tpl_include_page($conf['sidebar'], 1, 1) /* includes the nearest sidebar page */ ?>
             </div>
-            </div>
-        <?php endif; ?>
+        </div>
+    <?php endif; ?>
 
+    <div id="view" class="right-column">
 
-        <div id="view" class="right-column">
+        <?php if(($conf['youarehere'] || $conf['breadcrumbs'] || (page_exists("header") && auth_quickaclcheck("header"))) && tpl_getConf('siteHeaderPosition')=='Above page'):?>
+            <div class="site-header">
 
-                <?php if(($conf['youarehere'] || $conf['breadcrumbs'] || (page_exists("header") && auth_quickaclcheck("header"))) && tpl_getConf('siteHeaderPosition')=='Above page'):?>
-                <div class="site-header">
                 <?php html_msgarea() /* occasional error and info messages on top of the page */ ?>
                 <!-- ********** Notice ********** -->
                 <?php
@@ -212,19 +234,19 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
                 ?>
 
                 <?php if($conf['youarehere'] || $conf['breadcrumbs']):?>
+                    <div class="site-navigation">
+                        <!-- BREADCRUMBS -->
+                        <?php if($conf['youarehere']){ ?>
+                            <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
+                        <?php } ?>
+                        <?php if($conf['breadcrumbs']){ ?>
+                            <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
+                        <?php } ?>
+                    </div>
+                <?php endif?>
 
-                <div class="site-navigation">
-                    <!-- BREADCRUMBS -->
-                    <?php if($conf['youarehere']){ ?>
-                        <div class="breadcrumbs"><?php tpl_youarehere() ?></div>
-                    <?php } ?>
-                    <?php if($conf['breadcrumbs']){ ?>
-                        <div class="breadcrumbs"><?php tpl_breadcrumbs() ?></div>
-                    <?php } ?>
-                </div>
-                <?php endif?>
-                </div>
-                <?php endif?>
+            </div>
+        <?php endif?>
 
         <article id="content">
             <?php tpl_flush(); ?>
@@ -234,10 +256,9 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
 
 
         <?php if(tpl_getConf('showPageInfo') ):?>
-         <div class="page-info">
+            <div class="page-info">
                 <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-
-        </div>
+            </div>
         <?php endif; ?>
 
 
@@ -252,14 +273,16 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
         <!-- /footer -->
         <div style="display: none;"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
     </div>
-    </main>
-        <?php
-    if((page_exists("footer") && auth_quickaclcheck("footer")) && tpl_getConf('siteFooterPosition')=='Bottom')
-    {
-        echo '<footer id="footer">';
-        tpl_include_page('footer');
-        echo '</footer>';
-    }
-    ?>
+</main>
+
+<?php
+if((page_exists("footer") && auth_quickaclcheck("footer")) && tpl_getConf('siteFooterPosition')=='Bottom')
+{
+    echo '<footer id="footer">';
+    tpl_include_page('footer');
+    echo '</footer>';
+}
+?>
+
 </body>
 </html>
