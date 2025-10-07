@@ -133,7 +133,7 @@ $page_title = ucwords(strtolower($title), " : _");
 
                     if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
                         {
-                            echo '<div class="list"><p>'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
+                            echo '<div class="list"><p class="mobile-menu-title">'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
                             (new \dokuwiki\Menu\PageMenu())->getListItems()
                             .'</div>';
                         }
@@ -141,7 +141,7 @@ $page_title = ucwords(strtolower($title), " : _");
                         if($showTools) {
                             if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
                             {
-                                 echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
+                                 echo '<div class="list"><p class="mobile-menu-title">'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
                                  (new \dokuwiki\Menu\SiteMenu())->getListItems()
                                  .'</div>';
                             }
@@ -149,13 +149,14 @@ $page_title = ucwords(strtolower($title), " : _");
 
                         if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0)
                         {
-                            echo '<div class="list"><p>'.tpl_getLang('user').' '.tpl_getLang('tools').'</p>'.
+
+                            if($USERINFO){
+                                $TOOLSUNAME = " (".$USERINFO['name'].")";
+                            }
+
+                            echo '<div class="list"><p class="mobile-menu-title">'.tpl_getLang('user').' '.tpl_getLang('tools').$TOOLSUNAME.'</p>'.
                             (new \dokuwiki\Menu\UserMenu())->getListItems()
                             .'</div>';
-                        }
-
-                        if($USERINFO){
-                          echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
                         }
 
                     ?>

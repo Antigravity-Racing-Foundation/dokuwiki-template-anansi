@@ -41,9 +41,10 @@
     }
 
 
-    #sidebar {
+    div#sidebar {
         width: 100%;
         display: none;
+        border-right: none;
     }
 
     #navbar .right-column {
@@ -73,6 +74,24 @@
         width: 100%;
     }
 
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    navbar
+    {
+        margin-top: 0rem;
+        padding: 0.25rem 0rem 0.25rem 0rem;
+    }
+
+     footer
+     {
+         padding: 0.75rem;
+         margin-bottom: 0rem;
+         font-size: 0.75rem;
+     }
+
     navbar .right-column .options
     {
         flex-direction: column;
@@ -91,13 +110,26 @@
      {
         width: 100%;
      }
-     
+
      navbar .right-column .mobile-menu
      {
-        padding: 0px;
-        border: none;
+        background-color: var(--background);
+        padding: 0rem 1rem 1rem 1rem;
+        border: 1px solid #8ac0ca;
         display: flex;
         flex-direction: column;
+     }
+
+     .mobile-menu.menu p
+     {
+        margin: 0rem;
+     }
+
+     .mobile-menu.menu .mobile-menu-title
+     {
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
      }
 
      .mobile-menu.menu .list
@@ -106,7 +138,7 @@
         top: 0px;
         border: none;
         z-index: 1;
-
+        padding: 0rem;
      }
 
      .dokuwiki .wrap_box.wrap_side.wrap_big, .dokuwiki .wrap_box.wrap_side
