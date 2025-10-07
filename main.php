@@ -170,7 +170,7 @@ $page_title = ucwords(strtolower($title), " : _");
             <?php endif?>
         </div>
 
-        <div id='showhideappoptions' class="mobile icon" <?=$s2?>>
+        <div id='showhideappoptions' class="mobile icon">
             <div class="button"></div>
         </div>
     </navbar>
