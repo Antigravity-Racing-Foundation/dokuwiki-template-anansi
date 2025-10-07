@@ -1,4 +1,4 @@
-# Mildly less minimal
-Isekai ahh name
+# Anansi
+[WipEout DokuWiki](https://wipeout.wiki/)'s template
 
-A fork of the Minimal Dokuwiki template to be used on [the WipEout wiki](https://wiki.agracingfoundation.org/)
+A fork of [the Minimal Dokuwiki template](https://github.com/ReactiveMatter/dokuwiki-template-minimal) with changes to styling and functionality.
