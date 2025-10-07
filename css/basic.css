@@ -753,7 +753,7 @@ navbar form.search input
 }
 navbar form.search input:focus
 {
-    box-shadow: 0px 0px 5px #8ac0ca;
+    box-shadow: 0px 0px 5px #8ac0ca inset, 0px 0px 5px #8ac0ca;
 }
 
 #navbar .left-column
@@ -879,7 +879,9 @@ footer {
 footer
 {
     background: #fcfcfc;
-    padding: 10px;
+    padding: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-top: 4px solid #646464;
     margin-bottom: 1rem;
     font-size: 0.8rem;
@@ -936,13 +938,18 @@ h1, h2, h3, h4, h5, h6
     position: absolute;
     right: 0px;
     background-color: var(--background);
-    border: 1px solid var(--border-color);
+    border: 1px solid #8ac0ca;
     min-width: 200px;
     padding: 8px 0px;
     top: 44px;
     z-index: 20000;
-    border-radius: 3px;
 }
+
+.menu .list:hover
+{
+    box-shadow: 0px 0px 5px #8ac0ca;
+}
+
 .menu .list li
 {
     list-style: none;
@@ -963,7 +970,8 @@ h1, h2, h3, h4, h5, h6
 }
 .menu .list li>a:hover
 {
-    background-color: __background_alt__;
+    background-color: #8ac0ca;
+    color: #fff;
 }
 .menu .list li>a svg
 {
@@ -993,6 +1001,11 @@ h1, h2, h3, h4, h5, h6
 .menu .button:hover
 {
     color: var(--text-color);
+}
+
+.decoration
+{
+    height: 2rem;
 }
 
 .user-menu .button::before {
