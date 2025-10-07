@@ -11,4 +11,4 @@ $lang['stickyToc'] = "Make the table of content icon sticky on scrolling";
 $lang['siteHeaderPosition'] = "Position of the site header which contains :header and Breadcrumbs. 'Top' positions it just after navbar and before sidebar. 'Above page' positions it before page heading (beside sidebar)";
 $lang['siteFooterPosition'] = "Position of the site footer. 'Bottom' positions it at the end. 'After page' positions it after the page";
 $lang['theme'] = "Theme for the minimal template";
-$lang['hideTools'] = "Hide tools for guest users (non-logged in users)";
+$lang['hideTools'] = "Hide special tools (Recent Changes/Media Manager/Sitemap) for guest users (non-logged in users)";

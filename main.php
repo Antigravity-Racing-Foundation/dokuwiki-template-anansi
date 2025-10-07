@@ -86,96 +86,92 @@ $page_title = ucwords(strtolower($title), " : _");
             </a>
         </div>
 
-        <?php if($showTools || actionOK('search')):?>
-            <div class="right-column">
+        <div class="right-column">
 
-                <?php if($showTools):?>
-                    <div class="options">
+            <div class="options">
 
-                        <?php if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0):?>
-                            <div class="page-menu menu">
-                                <div class="button">
-                                    <!-- <span><?=tpl_getLang('page')?></span> -->
-                                </div>
-                                <div class="list">
-                                    <?=(new \dokuwiki\Menu\PageMenu())->getListItems()?>
-                                </div>
-                            </div>
-                        <?php endif?>
-
-                        <?php if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0):?>
-                            <div class="site-menu menu">
-                                <div class="button">
-                                    <!-- <span><?=tpl_getLang('site')?></span> -->
-                                </div>
-                                  <div class="list">
-                                  <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>
-                                </div>
-                            </div>
-                        <?php endif?>
-
-                        <?php if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0):?>
-                            <div class="user-menu menu">
-                                <div class="button">
-                                    <!-- <span><?=tpl_getLang('user')?></span> -->
-                                </div>
-                                <div class="list">
-                                    <?php if($USERINFO):?>
-                                        <div class="user-name"><?=$USERINFO['name']?></div>
-                                    <?php endif?>
-                                    <?=(new \dokuwiki\Menu\UserMenu())->getListItems()?>
-                                </div>
-                            </div>
-                        <?php endif?>
-
-                        <div class="mobile-menu menu">
-                            <?php
-
-                            if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
-                                {
-                                    echo '<div class="list"><p>'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
-                                    (new \dokuwiki\Menu\PageMenu())->getListItems()
-                                    .'</div>';
-                                }
-
-                               if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
-                               {
-                                    echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
-                                    (new \dokuwiki\Menu\SiteMenu())->getListItems()
-                                    .'</div>';
-                               }
-
-                               if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0)
-                               {
-                                   echo '<div class="list"><p>'.tpl_getLang('user').' '.tpl_getLang('tools').'</p>'.
-                                   (new \dokuwiki\Menu\UserMenu())->getListItems()
-                                   .'</div>';
-                               }
-
-                               if($USERINFO){
-                                 echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
-                               }
-
-                            ?>
+                <?php if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0):?>
+                    <div class="page-menu menu">
+                        <div class="button">
+                            <!-- <span><?=tpl_getLang('page')?></span> -->
+                        </div>
+                        <div class="list">
+                            <?=(new \dokuwiki\Menu\PageMenu())->getListItems()?>
                         </div>
                     </div>
                 <?php endif?>
 
-                <?php if(actionOK('search')):?>
-                <div class="search">
-                    <?php tpl_searchform(true,false) ?>
-                </div>
+                <?php if($showTools):?>
+                    <?php if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0):?>
+                        <div class="site-menu menu">
+                            <div class="button">
+                                <!-- <span><?=tpl_getLang('site')?></span> -->
+                            </div>
+                              <div class="list">
+                              <?=(new \dokuwiki\Menu\SiteMenu())->getListItems()?>
+                            </div>
+                        </div>
+                    <?php endif?>
                 <?php endif?>
+
+                <?php if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0):?>
+                    <div class="user-menu menu">
+                        <div class="button">
+                            <!-- <span><?=tpl_getLang('user')?></span> -->
+                        </div>
+                        <div class="list">
+                            <?php if($USERINFO):?>
+                                <div class="user-name"><?=$USERINFO['name']?></div>
+                            <?php endif?>
+                            <?=(new \dokuwiki\Menu\UserMenu())->getListItems()?>
+                        </div>
+                    </div>
+                <?php endif?>
+
+                <div class="mobile-menu menu">
+                    <?php
+
+                    if(sizeof((new \dokuwiki\Menu\PageMenu())->getItems())>0)
+                        {
+                            echo '<div class="list"><p>'.tpl_getLang('page').' '.tpl_getLang('tools').'</p>'.
+                            (new \dokuwiki\Menu\PageMenu())->getListItems()
+                            .'</div>';
+                        }
+
+                        if($showTools) {
+                            if(sizeof((new \dokuwiki\Menu\SiteMenu())->getItems())>0)
+                            {
+                                 echo '<div class="list"><p>'.tpl_getLang('site').' '.tpl_getLang('tools').'</p>'.
+                                 (new \dokuwiki\Menu\SiteMenu())->getListItems()
+                                 .'</div>';
+                            }
+                        }
+
+                        if(sizeof((new \dokuwiki\Menu\UserMenu())->getItems())>0)
+                        {
+                            echo '<div class="list"><p>'.tpl_getLang('user').' '.tpl_getLang('tools').'</p>'.
+                            (new \dokuwiki\Menu\UserMenu())->getListItems()
+                            .'</div>';
+                        }
+
+                        if($USERINFO){
+                          echo '<div class="user-name"><p>Username: '.$USERINFO['name'].'</p></div>';
+                        }
+
+                    ?>
+                </div>
             </div>
 
-            <?php
-                if(!$showTools){$s2 = "style=visibility:hidden";}
-                else {$s2="";}
-            ?>
-            <div id='showhideappoptions' class="mobile icon" <?=$s2?>>
-                <div class="button"></div>
+            <?php if(actionOK('search')):?>
+            <div class="search">
+                <?php tpl_searchform(true,false) ?>
             </div>
-        <?php endif?>
+            <?php endif?>
+        </div>
+
+        <div id='showhideappoptions' class="mobile icon" <?=$s2?>>
+            <div class="button"></div>
+        </div>
     </navbar>
 
     <?php if(($conf['youarehere'] || $conf['breadcrumbs'] || (page_exists("header") && auth_quickaclcheck("header")) ) && tpl_getConf('siteHeaderPosition')=='Top'):?>
