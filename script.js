@@ -6,18 +6,18 @@ jQuery('#dw__toc').css('display','block');
 
 jQuery(document).on('click', function(e) {
     if (!jQuery(e.target).closest('.menu').length) {
-        jQuery('.menu:not(.mobile-menu) .list').hide();
+        jQuery('.menu:not(.mobile-menu) .list').fadeOut(150);
     }
 
      if (!jQuery(e.target).closest('.dw__toc').length) {
-        jQuery('#dw__toc>div').hide();
-        jQuery('#dw__toc>div>ul').hide();
+        jQuery('#dw__toc>div').fadeOut(150);
+        jQuery('#dw__toc>div>ul').fadeOut(150);
         jQuery('#dw__toc').css('display','block');
     }
-}); 
+});
 jQuery('.menu:not(.mobile-menu)').on('click', function(e) {
-    jQuery('.menu:not(.mobile-menu) .list').not(jQuery(this).children('.list')).hide();
-    jQuery(this).children('.list').slideToggle('fast');
+    jQuery('.menu:not(.mobile-menu) .list').not(jQuery(this).children('.list')).fadeOut(150);
+    jQuery(this).children('.list').slideToggle(125);
 });
 
 
