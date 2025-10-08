@@ -77,12 +77,6 @@ $page_title = ucwords(strtolower($title), " : _");
                     <img src="<?=tpl_getMediaFile(array(':wiki:logo.png', ':wiki:logo.svg', ':wiki:logo.jpeg',':wiki:logo.jpg',  ':logo.png', ':logo.svg', ':logo.jpeg',':logo.jpg', 'images/logo.png', ':wiki:dokuwiki.svg'), false)?>">
                 </div>
 
-                <div class="site-title">
-                    <?=$conf['title']?>
-                </div>
-
-                <!-- <img src="<?php echo DOKU_TPL; ?>images/case.svg" alt="Logo" class="decoration"> -->
-
             </a>
         </div>
 

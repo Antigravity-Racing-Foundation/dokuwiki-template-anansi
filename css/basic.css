@@ -675,7 +675,7 @@ option {
     flex-wrap: wrap;
     flex-direction: column;
     gap: 16px;
-    padding: 8px 16px;
+    padding: 1.25rem 0rem 1rem 1.25rem;
 }
 
 .right-column {
@@ -694,8 +694,10 @@ navbar
     display: flex;
     border-bottom: 4px solid #646464;
     line-height: 1;
-    background-color: #fcfcfc;
+    background-color: none;
+    background: linear-gradient(90deg, #fcfcfc, #fff0);
     margin-top: 1rem;
+    position: relative;
 }
 
 navbar .site-name
@@ -708,8 +710,10 @@ navbar .site-name
 
 navbar .site-name .site-logo
 {
-    width: 24px;
-    height: 24px;
+    width: 205px;
+    height: 30px;
+    /* ratio w:h 6.85:1 */
+    /* i used math to generate width because idk how to limit it here this is so fucking stupid i'm sorry -b */
 }
 navbar .site-name .site-title
 {
@@ -1001,11 +1005,6 @@ h1, h2, h3, h4, h5, h6
 .menu .button:hover
 {
     color: var(--text-color);
-}
-
-.decoration
-{
-    height: 2rem;
 }
 
 .user-menu .button::before {
