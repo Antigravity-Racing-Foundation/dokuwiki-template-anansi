@@ -982,6 +982,11 @@ h1, h2, h3, h4, h5, h6
     fill: __text_alt__;
 }
 
+.menu .list li>a:hover svg
+{
+    fill: #fff;
+}
+
 .menu .list li.top
 {
     display: none;
