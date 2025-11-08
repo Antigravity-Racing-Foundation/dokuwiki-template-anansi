@@ -17,8 +17,7 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT=='show');
 ob_start();
 tpl_pagetitle();
 $title = ob_get_clean();
-$page_title = ucwords(strtolower($title), " : _");
-// jank to get somewhat decent capitalization...
+$page_title = p_get_metadata($ID)['title'] ?: "No title";
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +32,14 @@ $page_title = ucwords(strtolower($title), " : _");
 
     <?php tpl_metaheaders() ?>
 
-    <meta name="description" content="A page of the WipEout wiki covering the '<?= $page_title ?>' topic"/>
+    <meta name="description" content="A page of the WipEout wiki covering '<?= $page_title ?>'"/>
     <meta name="keywords" content="WipEout, HD, 2048, Pulse, AGRF, AG Racing Foundation, wiki, teams, games, tracks, ships, lore">
     <meta name="author" content="WipEout wiki contributors"/>
     <meta name="robots" content="index"/>
 
     <meta property="og:title" content="WipEout Wiki"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:description" content="WipEout Wiki - <?= $page_title ?>"/>
+    <meta property="og:description" content="<?= $page_title ?> - WipEout Wiki"/>
     <meta property="og:url" content="<?= wl($ID, '', true) ?>"/>
     <meta property="og:image" content="https://wipeout.wiki/_media/wiki:og_image.png"/>
     <meta property="og:image:alt" content="A pretty graphic in the style of the website"/>
