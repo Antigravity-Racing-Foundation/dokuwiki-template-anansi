@@ -174,4 +174,10 @@
         display: flex;
      }
 
+
+    div.toc_shrinken {
+        display: none;
+    }
+
+
 }
