@@ -175,6 +175,10 @@
      }
 
 
+     div.thumb2 {
+        max-width: 35%;
+    }
+
     div.toc_shrinken {
         display: none;
     }
