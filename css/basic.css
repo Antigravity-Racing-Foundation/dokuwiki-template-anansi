@@ -70,8 +70,9 @@ h4,
 h5,
 h6 {
     font-weight: bold;
-    color: var(--text-color-alt);
+    color: #000 !important;
     background-color: inherit;
+    text-shadow: 1px 1px 5px #aaa;
     padding: 0;
     line-height: 1.2;
     clear: left; /* ideally 'both', but problems with toc */
